@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HC's Room</title>
+<meta name="description" content="HC（@_im_hc）的連結頁：關於我、我做的小工具、我的賣場、兜粉推薦碼。">
+<meta name="theme-color" content="#B9C2FF">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HC's Room ✦">
+<meta property="og:description" content="關於我、我做的小工具、我的賣場、兜粉推薦碼">
+<meta property="og:url" content="https://imhc-studio.github.io/">
+<meta property="og:image" content="https://imhc-studio.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/jpeg" href="avatar.jpg">
+<link rel="apple-touch-icon" href="avatar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+<script data-goatcounter="https://imhc-studio.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<style>
+/* Layout: Y2K desktop. A pink CRT monitor as the hero, then a stack of pixel "program windows"
+   (about / tools / shop / referral), each with a title bar, hearts and ×. One phone-width column. */
+:root{
+  --sky-1:#AEB8FF; --sky-2:#DCE0FF; --sky-3:#F7F8FF;
+  --win:#FFFFFF; --win-2:#EEF0FF; --ink:#2E2F8F; --text:#24255C; --muted:#5E61A8;
+  --bar:#6B76F2; --bar-ink:#FFFFFF; --pink:#F7A8D4; --pink-2:#E77DBA; --pink-3:#FFD6EC;
+  --lime:#E6F66B; --dot:rgba(255,255,255,.7); --screen-1:#5B7BEA; --screen-2:#A9C2FF; --spark:#6B76F2;
+  --pixel:"Silkscreen","VT323",monospace;
+  --term:"VT323",ui-monospace,monospace;
+  --font:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --sky-1:#15164A; --sky-2:#23256B; --sky-3:#2E2A72;
+  --win:#1E1F55; --win-2:#272A6E; --ink:#A9B2FF; --text:#EEF0FF; --muted:#B4B9F2;
+  --bar:#5560E0; --pink-3:#4A2C63; --spark:#C9CFFF; --dot:rgba(255,255,255,.14); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --sky-1:#15164A; --sky-2:#23256B; --sky-3:#2E2A72;
+  --win:#1E1F55; --win-2:#272A6E; --ink:#A9B2FF; --text:#EEF0FF; --muted:#B4B9F2;
+  --bar:#5560E0; --pink-3:#4A2C63; --spark:#C9CFFF; --dot:rgba(255,255,255,.14); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;color:var(--text);font-family:var(--font);font-size:15px;line-height:1.65;
+  background:
+    radial-gradient(circle,var(--dot) 1.4px,transparent 1.6px) 0 0/26px 26px,
+    linear-gradient(180deg,var(--sky-1) 0%,var(--sky-2) 45%,var(--sky-3) 100%) fixed;
+  background-color:var(--sky-2);
+  padding:max(28px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(40px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));
+  overflow-x:hidden}
+main{max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:22px;position:relative}
+a{color:inherit}
+svg{display:block}
+.px{image-rendering:pixelated;shape-rendering:crispEdges}
+
+/* floating pixel sparkles & hearts */
+.deco{position:absolute;pointer-events:none;color:var(--spark);z-index:0}
+.deco.pink{color:var(--pink-2)}
+.twinkle{animation:twinkle 2.4s steps(2) infinite}
+.twinkle.slow{animation-duration:3.4s}
+@keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35}}
+.float{animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* ---------- top label ---------- */
+.topline{display:flex;justify-content:space-between;align-items:center;font-family:var(--pixel);font-size:11px;color:var(--ink);position:relative;z-index:1}
+.pill{background:var(--win);border:2px solid var(--ink);border-radius:999px;padding:1px 10px;letter-spacing:.5px}
+
+/* ---------- CRT hero ---------- */
+.hero{text-align:center;position:relative;z-index:1}
+.crt{width:min(216px,59vw);margin:4px auto 0;position:relative}
+.crt-body{background:linear-gradient(160deg,#FFFFFF 0%,#F3F3FA 50%,#DADBEA 100%);border-radius:24px;padding:14px 14px 24px;
+  box-shadow:inset 3px 3px 0 #fff,inset -4px -6px 0 rgba(80,80,140,.14),0 10px 0 -2px #C4C6DC,0 14px 26px rgba(60,40,150,.22)}
+.screen{aspect-ratio:1/1;border-radius:18px;position:relative;overflow:hidden;background:#FFD95E;
+  box-shadow:0 0 0 3px #C9CBE0}
+.screen::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.10) 0 2px,transparent 2px 4px),radial-gradient(ellipse at 50% 50%,transparent 60%,rgba(40,30,110,.28) 100%)}
+.screen::before{content:"";position:absolute;z-index:2;left:8%;top:5%;width:42%;height:16%;border-radius:50%;background:rgba(255,255,255,.35);filter:blur(6px)}
+.screen-tag{position:absolute;z-index:3;left:10px;bottom:8px;font-family:var(--pixel);font-size:11px;color:#2E2F8F;background:rgba(255,255,255,.85);padding:1px 6px;border:1.5px solid #2E2F8F}
+.screen-tag .cursor{display:inline-block;width:.55em;height:.9em;background:#2E2F8F;margin-left:3px;vertical-align:-1px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.screen-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;z-index:0}
+.crt-knobs{position:absolute;right:24px;bottom:7px;display:flex;gap:6px}
+.crt-knobs i{width:12px;height:7px;border-radius:2px;background:#fff;box-shadow:inset -1px -1px 0 rgba(0,0,0,.15)}
+.crt-knobs i{background:#E3E4F0;box-shadow:inset 1px 1px 0 #fff}.crt-knobs i:first-child{background:var(--lime)}.crt-knobs i:last-child{background:#FF7EB8}
+.crt-vent{position:absolute;left:24px;bottom:9px;width:56px;height:6px;background:repeating-linear-gradient(90deg,rgba(90,90,150,.28) 0 6px,transparent 6px 9px)}
+
+.hello{margin:22px 0 0;font-family:var(--pixel);font-weight:700;font-size:24px;color:var(--ink);letter-spacing:1px}
+.handle{display:inline-block;margin-top:2px;font-family:var(--term);font-size:21px;color:var(--muted);text-decoration:none}
+.handle:hover{color:var(--pink-2)}
+.socials{display:flex;justify-content:center;gap:16px;margin-top:16px}
+.soc{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:var(--ink);font-family:var(--pixel);font-size:10px;letter-spacing:.5px}
+.soc .btn{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;border:2.5px solid var(--ink);background:var(--win);color:var(--ink);
+  box-shadow:inset -4px -4px 0 rgba(46,47,143,.14),inset 4px 4px 0 rgba(255,255,255,.85),3px 3px 0 var(--ink);transition:transform .1s,box-shadow .1s}
+.soc .btn svg{width:26px;height:26px}
+.soc:nth-child(1) .btn{background:var(--pink-3)}
+.soc:nth-child(2) .btn{background:var(--win)}
+.soc:nth-child(3) .btn{background:var(--lime);color:#2E2F8F}
+.soc:nth-child(4) .btn{background:#CFC4FF;color:#2E2F8F}
+.soc:hover .btn{transform:translateY(-2px)}
+.soc:active .btn{transform:translate(3px,3px);box-shadow:inset 4px 4px 0 rgba(46,47,143,.14),0 0 0 var(--ink)}
+
+/* ---------- pixel window ---------- */
+.win{position:relative;z-index:1;background:var(--win);border:2px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.bar{display:flex;align-items:center;gap:8px;background:linear-gradient(90deg,var(--bar) 0%,#A58BF2 55%,#F2A6D6 100%);color:var(--bar-ink);padding:3px 8px;border-bottom:2px solid var(--ink);
+  font-family:var(--pixel);font-size:12px;letter-spacing:.5px}
+.bar .name{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .name::before{content:"✦ "}
+.bar .dots{display:flex;gap:5px}
+.bar .dots i{width:11px;height:11px;border-radius:50%;border:2px solid #2E2F8F;background:var(--lime);box-shadow:inset -2px -2px 0 rgba(0,0,0,.12),inset 2px 2px 0 rgba(255,255,255,.7)}
+.bar .dots i:nth-child(2){background:#FFB8DA}
+.bar .x{width:18px;height:18px;display:grid;place-items:center;padding:0;background:var(--win);color:var(--ink);border:2px solid var(--ink);border-radius:50%;font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:13px;line-height:1;text-indent:0}
+.body{padding:16px}
+.win h2{margin:0 0 10px;font-family:var(--pixel);font-weight:700;font-size:17px;color:var(--ink);text-align:center;letter-spacing:.5px}
+.win h2 .zh{font-family:var(--font);font-weight:800}
+
+/* about */
+.bio{margin:0;text-align:center}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:12px}
+.chip{font-size:13px;font-weight:700;padding:2px 10px;border:2px solid var(--ink);border-radius:999px;background:var(--win-2);color:var(--text)}
+a.chip{text-decoration:none;display:inline-block;transition:transform .15s ease,box-shadow .15s ease}
+a.chip:hover,a.chip:focus-visible{transform:translateY(-3px) rotate(-2deg);box-shadow:2px 3px 0 var(--ink)}
+a.chip:active{transform:translate(1px,1px);box-shadow:none}
+.chip:nth-child(3n+1){background:var(--lime);color:#24255C}
+.chip:nth-child(3n+2){background:var(--pink-3)}
+
+/* link rows */
+.links{display:flex;flex-direction:column;gap:12px}
+.link{display:flex;align-items:center;gap:12px;text-decoration:none;padding:10px 12px;background:var(--win-2);
+  border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);transition:transform .1s,box-shadow .1s}
+.link:hover{background:color-mix(in srgb,var(--win-2) 70%,var(--pink-3))}
+.link:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.link .ico{flex:none;width:46px;height:46px;border:2px solid var(--ink);display:grid;place-items:center;font-size:24px;background:var(--win)}
+.link .ico.pink{background:var(--pink-3)} .link .ico.lime{background:var(--lime)} .link .ico.blue{background:var(--screen-2)}
+.link .txt{flex:1;min-width:0}
+.link .t{display:block;font-weight:800;font-size:16px;line-height:1.3}
+.link .s{display:block;font-size:13px;color:var(--muted);line-height:1.45;margin-top:2px}
+.link .go{flex:none;font-family:var(--pixel);font-size:16px;color:var(--ink)}
+.link.soon{border-style:dashed;box-shadow:none;background:transparent;pointer-events:none}
+.tag{display:inline-block;font-family:var(--pixel);font-size:10px;padding:0 6px;margin-left:6px;vertical-align:2px;background:var(--lime);color:#24255C;border:1.5px solid var(--ink)}
+
+/* referral */
+.ref p{margin:0 0 12px;text-align:center}
+.code-row{display:flex;gap:10px;align-items:stretch}
+.code{flex:1;min-width:0;font-family:var(--term);font-weight:400;font-size:36px;line-height:1.1;letter-spacing:4px;text-align:center;color:var(--ink);
+  padding:8px;background:var(--win-2);border:2px dashed var(--ink);overflow-wrap:anywhere}
+.copy{flex:none;font:inherit;font-weight:800;font-size:15px;color:#24255C;background:var(--lime);cursor:pointer;padding:0 16px;
+  border:2px solid var(--ink);box-shadow:inset -3px -3px 0 rgba(0,0,0,.12),inset 3px 3px 0 rgba(255,255,255,.7),3px 3px 0 var(--ink)}
+.copy:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.copy.done{background:var(--pink)}
+.steps{margin:14px 0 0;padding:0;list-style:none;font-size:14px;color:var(--muted)}
+.steps li{padding-left:2.1em;text-indent:-2.1em}
+.steps li::before{display:inline-block;width:2.1em;text-indent:0;content:attr(data-n);font-family:var(--pixel);color:var(--ink)}
+
+/* works: category tabs + project cards */
+.tabs[hidden]{display:none}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:0 -2px 12px;padding:2px 2px 4px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;font:inherit;font-size:13px;font-weight:800;padding:3px 12px;border:2px solid var(--ink);border-radius:999px;background:var(--win);color:var(--text);cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--bar);color:#fff;box-shadow:2px 2px 0 var(--ink)}
+.carousel{overflow:hidden;margin:0 -2px;padding:2px 2px 0;touch-action:pan-y}
+.track{display:flex;transition:transform .45s cubic-bezier(.3,.7,.3,1)}
+.slide{flex:0 0 100%;min-width:0;padding:0 5px 5px 0}
+.proj{position:relative;display:block;width:100%;padding:0;text-align:left;font:inherit;color:inherit;cursor:pointer;
+  background:var(--win-2);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.proj:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.proj .cover{display:flex;aspect-ratio:9/4;overflow:hidden;border-bottom:2px solid var(--ink);background:var(--win)}
+.proj .cover img{flex:1;min-width:0;height:100%;object-fit:cover;display:block}
+.proj .cover img+img{border-left:1.5px solid rgba(46,47,143,.25)}
+.car-nav[hidden]{display:none}
+.car-nav{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px}
+.cbtn{flex:none;width:30px;height:30px;display:grid;place-items:center;cursor:pointer;font-family:var(--pixel);font-size:12px;color:var(--ink);
+  background:var(--win);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
+.cbtn:active{transform:translate(2px,2px);box-shadow:none}
+.dots{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:220px}
+.dots button{width:9px;height:9px;padding:0;border:1.5px solid var(--ink);background:var(--win);cursor:pointer}
+.dots button[aria-current="true"]{background:var(--bar);width:18px}
+.proj .meta{display:block;padding:6px 8px 8px}
+.proj .pt{display:block;font-size:13px;font-weight:800;line-height:1.35}
+.proj .pd{display:block;font-family:var(--term);font-size:15px;color:var(--muted);line-height:1.2;margin-top:2px}
+.proj .pcount{position:absolute;top:6px;right:6px;font-family:var(--pixel);font-size:10px;padding:0 5px;background:rgba(255,255,255,.9);color:#2E2F8F;border:1.5px solid var(--ink)}
+.hint{margin:10px 0 0;text-align:center;font-family:var(--term);font-size:17px;color:var(--muted)}
+
+/* products */
+.products{display:grid;grid-auto-flow:column;grid-auto-columns:42%;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 4px 8px 2px;margin:0 -4px 0 0;scrollbar-width:thin}
+.products .prod{scroll-snap-align:start}
+.prod{display:block;text-decoration:none;background:var(--win-2);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.prod:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.prod img{width:100%;aspect-ratio:1;object-fit:cover;display:block;border-bottom:2px solid var(--ink);background:var(--win)}
+.prod .pn{display:block;padding:6px 8px 0;font-size:13px;font-weight:700;line-height:1.35;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.prod .pp{display:block;padding:2px 8px 8px;font-family:var(--pixel);font-size:13px;color:var(--pink-2)}
+.shop-all{display:flex;justify-content:center;align-items:center;text-align:center;gap:8px;margin-top:14px;padding:10px;text-decoration:none;
+  font-weight:800;color:#24255C;background:var(--lime);border:2px solid var(--ink);
+  box-shadow:inset -3px -3px 0 rgba(0,0,0,.12),inset 3px 3px 0 rgba(255,255,255,.7),3px 3px 0 var(--ink)}
+.shop-all:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+
+/* photo viewer */
+.viewer{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;
+  padding:max(16px,env(safe-area-inset-top)) 12px max(16px,env(safe-area-inset-bottom));
+  background:color-mix(in srgb,#1A1B5C 70%,transparent);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.viewer.open{display:flex}
+.viewer .win{width:100%;max-width:520px;max-height:100%;display:flex;flex-direction:column}
+.viewer .x{cursor:pointer;width:22px;height:22px;font-size:15px}
+.stage{position:relative;background:#14154A;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;touch-action:pan-y}
+.stage img{max-width:100%;max-height:calc(100vh - 190px);max-height:calc(100dvh - 190px);object-fit:contain;display:block;user-select:none;-webkit-user-drag:none}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;display:grid;place-items:center;cursor:pointer;
+  font-family:var(--pixel);font-size:16px;color:var(--ink);background:var(--win);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
+.nav.prev{left:8px}.nav.next{right:8px}
+.nav:active{transform:translateY(-50%) translate(2px,2px);box-shadow:none}
+.vfoot{display:flex;align-items:center;gap:10px;padding:8px 12px;border-top:2px solid var(--ink);background:var(--win)}
+.vcap{flex:1;min-width:0;font-size:14px;font-weight:700}
+.vig{flex:none;font-size:12px;font-weight:800;text-decoration:none;padding:1px 8px;border:2px solid var(--ink);background:var(--pink-3);color:var(--text)}
+.vproj{display:flex;align-items:center;gap:8px;padding:6px 8px;border-top:2px solid var(--ink);background:var(--win-2)}
+.vproj button{flex:1;font:inherit;font-size:13px;font-weight:800;padding:5px 6px;cursor:pointer;color:var(--text);background:var(--win);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
+.vproj button:active{transform:translate(2px,2px);box-shadow:none}
+.vproj span{flex:none;font-family:var(--pixel);font-size:11px;color:var(--muted)}
+.vcount{flex:none;font-family:var(--pixel);font-size:12px;color:var(--muted)}
+body.lock{overflow:hidden}
+.nav[hidden],.vig[hidden]{display:none}
+
+/* ---------- footer ---------- */
+footer{text-align:center;font-family:var(--term);font-size:18px;color:var(--muted);position:relative;z-index:1}
+.loading{display:inline-flex;gap:3px;vertical-align:-2px;margin:0 6px}
+.loading i{width:8px;height:12px;background:var(--bar);animation:load 1.8s steps(1) infinite}
+.loading i:nth-child(2){animation-delay:.3s}.loading i:nth-child(3){animation-delay:.6s}.loading i:nth-child(4){animation-delay:.9s}
+@keyframes load{0%{opacity:.2}30%,100%{opacity:1}}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- pixel icon symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="spark" viewBox="0 0 9 9"><path class="px" fill="currentColor" d="M4 0h1v2h1v1h2v1H9v1H8v1H6v1H5v2H4V7H3V6H1V5H0V4h1V3h2V2h1z"/></symbol>
+  <symbol id="heart" viewBox="0 0 9 8"><path class="px" fill="currentColor" d="M1 0h2v1h1v1h1V1h1V0h2v1h1v3H8v1H7v1H6v1H5v1H4V7H3V6H2V5H1V4H0V1h1z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 12 12"><path class="px" fill="currentColor" d="M1 0h10v1h-10zM0 1h1v1h-1zM11 1h1v1h-1zM0 2h1v1h-1zM9 2h1v1h-1zM11 2h1v1h-1zM0 3h1v1h-1zM4 3h4v1h-4zM11 3h1v1h-1zM0 4h1v1h-1zM3 4h1v1h-1zM8 4h1v1h-1zM11 4h1v1h-1zM0 5h1v1h-1zM3 5h1v1h-1zM8 5h1v1h-1zM11 5h1v1h-1zM0 6h1v1h-1zM3 6h1v1h-1zM8 6h1v1h-1zM11 6h1v1h-1zM0 7h1v1h-1zM3 7h1v1h-1zM8 7h1v1h-1zM11 7h1v1h-1zM0 8h1v1h-1zM4 8h4v1h-4zM11 8h1v1h-1zM0 9h1v1h-1zM11 9h1v1h-1zM0 10h1v1h-1zM11 10h1v1h-1zM1 11h10v1h-10z"/></symbol>
+  <symbol id="i-threads" viewBox="0 0 12 12"><path class="px" fill="currentColor" d="M3 0h6v1h-6zM2 1h1v1h-1zM9 1h1v1h-1zM1 2h1v1h-1zM10 2h1v1h-1zM0 3h1v1h-1zM4 3h4v1h-4zM10 3h1v1h-1zM0 4h1v1h-1zM3 4h1v1h-1zM8 4h1v1h-1zM10 4h1v1h-1zM0 5h1v1h-1zM3 5h1v1h-1zM8 5h1v1h-1zM10 5h1v1h-1zM0 6h1v1h-1zM3 6h1v1h-1zM8 6h3v1h-3zM0 7h1v1h-1zM4 7h4v1h-4zM0 8h1v1h-1zM1 9h1v1h-1zM10 9h1v1h-1zM2 10h1v1h-1zM9 10h1v1h-1zM3 11h6v1h-6z"/></symbol>
+  <symbol id="i-tiktok" viewBox="0 0 12 12"><path class="px" fill="currentColor" d="M6 0h2v1h-2zM6 1h3v1h-3zM6 2h1v1h-1zM8 2h2v1h-2zM6 3h1v1h-1zM9 3h2v1h-2zM6 4h1v1h-1zM6 5h1v1h-1zM2 6h5v1h-5zM1 7h2v1h-2zM6 7h1v1h-1zM0 8h2v1h-2zM6 8h1v1h-1zM0 9h2v1h-2zM5 9h2v1h-2zM1 10h5v1h-5z"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 12 12"><path class="px" fill="currentColor" d="M0 0h2v1h-2zM1 1h1v1h-1zM1 2h10v1h-10zM1 3h1v1h-1zM10 3h1v1h-1zM1 4h1v1h-1zM10 4h1v1h-1zM2 5h1v1h-1zM9 5h1v1h-1zM2 6h8v1h-8zM2 7h1v1h-1zM2 8h9v1h-9zM3 9h1v1h-1zM8 9h1v1h-1zM2 10h3v1h-3zM7 10h3v1h-3zM3 11h1v1h-1zM8 11h1v1h-1z"/></symbol>
+</svg>
+
+<main>
+  <!-- decorations -->
+  <svg class="deco twinkle" style="top:70px;left:-4px" width="22" height="22"><use href="#spark"/></svg>
+  <svg class="deco twinkle slow" style="top:20px;right:10px" width="14" height="14"><use href="#spark"/></svg>
+  <svg class="deco pink float" style="top:200px;right:-6px" width="30" height="27"><use href="#heart"/></svg>
+  <svg class="deco twinkle slow" style="top:300px;left:2px" width="16" height="16"><use href="#spark"/></svg>
+  <svg class="deco twinkle" style="top:620px;right:-2px" width="20" height="20"><use href="#spark"/></svg>
+  <svg class="deco pink float" style="top:980px;left:-8px" width="24" height="22"><use href="#heart"/></svg>
+
+  <div class="topline"><span class="pill">IMHC.STUDIO</span><span class="pill">EST. 2026</span></div>
+
+  <!-- ===== CRT 螢幕 ===== -->
+  <header class="hero">
+    <div class="crt">
+      <div class="crt-body">
+        <div class="screen">
+          <!-- 頭像：換照片就覆蓋 avatar.jpg -->
+          <img class="screen-photo" src="avatar.jpg" alt="HC 的頭像">
+          <div class="screen-tag">ONLINE<span class="cursor"></span></div>
+        </div>
+        <div class="crt-vent"></div>
+        <div class="crt-knobs"><i></i><i></i></div>
+      </div>
+    </div>
+    <h1 class="hello">HI, I'M HC!</h1>
+    <div class="handle">@_im_hc</div>
+    <nav class="socials" aria-label="社群連結">
+      <a class="soc" href="https://www.instagram.com/_im_hc/" target="_blank" rel="noopener"><span class="btn"><svg><use href="#i-ig"/></svg></span>IG</a>
+      <a class="soc" href="https://www.threads.net/@_im_hc" target="_blank" rel="noopener"><span class="btn"><svg><use href="#i-threads"/></svg></span>THREADS</a>
+      <a class="soc" href="https://www.tiktok.com/@_im_hc" target="_blank" rel="noopener"><span class="btn"><svg><use href="#i-tiktok"/></svg></span>TIKTOK</a>
+      <a class="soc" href="https://myship.7-11.com.tw/general/detail/GM2602113969462" target="_blank" rel="noopener"><span class="btn"><svg><use href="#i-cart"/></svg></span>SHOP</a>
+    </nav>
+  </header>
+
+  <!-- ===== 關於我 ===== -->
+  <section class="win" aria-labelledby="about-h">
+    <div class="bar"><span class="name">ABOUT_ME.TXT</span>
+      <span class="dots"><i></i><i></i></span>
+      <span class="x">×</span></div>
+    <div class="body">
+      <h2 id="about-h">ABOUT <span class="zh">關於我</span></h2>
+      <p class="bio">台偶博愛粉｜目前是 F.F.O 的團粉媽咪<br>熱衷於設計應援 & 分享酷東西 🪄</p>
+      <div class="chips">
+        <a class="chip" href="https://www.instagram.com/f.f.o.official/" target="_blank" rel="noopener">☄️ F.F.O ↗</a>
+        <a class="chip" href="https://www.instagram.com/genblue.official/" target="_blank" rel="noopener">🐻 GENBLUE ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 應援作品（照片清單在最下面 script 的 WORKS） ===== -->
+  <section class="win" id="works" aria-labelledby="works-h">
+    <div class="bar"><span class="name">FAN_WORKS.JPG</span>
+      <span class="dots"><i></i><i></i></span>
+      <span class="x">×</span></div>
+    <div class="body">
+      <h2 id="works-h">WORKS <span class="zh">應援作品</span></h2>
+      <div class="tabs" id="worksTabs" role="group" aria-label="作品分類"></div>
+      <div class="carousel" id="worksCar" aria-roledescription="輪播">
+        <div class="track" id="worksGrid"></div>
+      </div>
+      <div class="car-nav">
+        <button class="cbtn" type="button" id="carPrev" aria-label="上一個作品">◀</button>
+        <div class="dots" id="carDots"></div>
+        <button class="cbtn" type="button" id="carNext" aria-label="下一個作品">▶</button>
+      </div>
+      <p class="hint">TAP TO VIEW ▶</p>
+    </div>
+  </section>
+
+  <!-- ===== 我做的小工具 ===== -->
+  <section class="win" id="tools" aria-labelledby="tools-h">
+    <div class="bar"><span class="name">MY_TOOLS.EXE</span>
+      <span class="dots"><i></i><i></i></span>
+      <span class="x">×</span></div>
+    <div class="body">
+      <h2 id="tools-h">TOOLS <span class="zh">我做的小工具</span></h2>
+      <div class="links">
+        <a class="link" href="https://imhc-studio.github.io/chat-clipboard/" target="_blank" rel="noopener">
+          <span class="ico blue">💬</span>
+          <span class="txt"><span class="t">Dolfan 聊天室剪貼簿<span class="tag">FREE</span></span>
+            <span class="s">上傳兜粉聊天截圖，自動挑出你和偶像的訊息，拼成限動圖或長圖</span></span>
+          <span class="go">▶</span>
+        </a>
+        <div class="link soon">
+          <span class="ico">🧪</span>
+          <span class="txt"><span class="t">下一個工具製作中…</span><span class="s">有想要的小工具，歡迎私訊我 ✦</span></span>
+        </div>
+      </div>
+      <a class="shop-all" href="https://ig.me/m/_im_hc" target="_blank" rel="noopener">💬 遇到 bug 或想許願？私訊我 IG 聊聊 ▶</a>
+    </div>
+  </section>
+
+  <!-- ===== 我的賣場 ===== -->
+  <section class="win" aria-labelledby="shop-h">
+    <div class="bar"><span class="name">MY_SHOP.EXE</span>
+      <span class="dots"><i></i><i></i></span>
+      <span class="x">×</span></div>
+    <div class="body">
+      <h2 id="shop-h">SHOP <span class="zh">HCㄉ賣場</span></h2>
+      <!-- 商品清單在最下面 script 的 PRODUCTS -->
+      <div class="products" id="prodGrid"></div>
+      <p class="hint">← SWIPE FOR MORE →</p>
+      <a class="shop-all" id="shopAll" href="https://myship.7-11.com.tw/general/detail/GM2602113969462" target="_blank" rel="noopener">🛒 逛賣貨便 ▶</a>
+    </div>
+  </section>
+
+  <!-- ===== 兜粉推薦碼 ===== -->
+  <section class="win ref" aria-labelledby="ref-h">
+    <div class="bar"><span class="name">FFO_BONUS.DAT</span>
+      <span class="dots"><i></i><i></i></span>
+      <span class="x">×</span></div>
+    <div class="body">
+      <h2 id="ref-h">BONUS <span class="zh">加入 Dolfan F.F.O 兜圈</span></h2>
+      <p>首次訂閱輸入我的推薦碼，訂閱金額每滿 20 元送 1 枚 <b>F.F.O 專屬兜幣</b>，訂閱期數越高送越多 🎁</p>
+      <div class="code-row">
+        <div class="code">D2LC85VZ</div>
+        <button class="copy" type="button" data-code="D2LC85VZ" id="copyBtn">複製</button>
+      </div>
+      <a class="shop-all" href="https://dolfan.club/idol/f.f.o.official?recommend-code=D2LC85VZ" target="_blank" rel="noopener">💌 加入 F.F.O 兜圈 ▶</a>
+      <ol class="steps">
+        <li data-n="01">點上面按鈕，或下載兜粉 App 搜尋 F.F.O</li>
+        <li data-n="02">首次訂閱時貼上推薦碼 D2LC85VZ</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>made by HC<span class="loading"><i></i><i></i><i></i><i></i></span>imhc-studio</footer>
+</main>
+
+<!-- 看大圖 -->
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="看大圖">
+  <div class="win">
+    <div class="bar"><span class="name">PHOTO_VIEWER.EXE</span>
+      <span class="dots"><i></i><i></i></span>
+      <button class="x" type="button" id="vClose" aria-label="關閉">×</button></div>
+    <div class="stage" id="vStage">
+      <img id="vImg" alt="">
+      <button class="nav prev" type="button" id="vPrev" aria-label="上一張">◀</button>
+      <button class="nav next" type="button" id="vNext" aria-label="下一張">▶</button>
+    </div>
+    <div class="vfoot"><span class="vcap" id="vCap"></span><a class="vig" id="vIg" target="_blank" rel="noopener" hidden>IG ↗</a><span class="vcount" id="vCount"></span></div>
+    <div class="vproj"><button type="button" id="vPrevW">◀ 上一個作品</button><span id="vWPos"></span><button type="button" id="vNextW">下一個作品 ▶</button></div>
+  </div>
+</div>
+
+<script>
+/* ====== 要改內容就改這裡 ======
+   WORKS：應援作品，一筆＝一個應援專案（一次生日／一個活動），越新放越上面。
+     type：可以填一個或多個，例如 ['goods','ticket']；'frame' 拍貼、'goods' 實體應援物、'ticket' 票夾、'flag' 街旗、'print' 雲端列印、'other' 其他
+     layout：'ig3' ＝ IG 三連圖，卡片會橫跨整排、三張並排（不是三連圖就不用寫）
+     tag：卡片左上角的小標（例如 拍貼框、手幅、卡套、手拿旗、手燈背帶）
+     photos：照片放進 works 資料夾，第一張是封面；ig3 依 IG 主頁由左到右的順序放
+     ratio：三連圖不是 3:4 時填，例如 '4/5'
+     ig：這篇 IG 貼文網址（沒有就留空）
+   PRODUCTS：賣場商品。SHOP_URL：賣貨便賣場網址。 */
+var WORKS = [
+  {type:'frame', layout:'ig3', tag:'拍貼', title:"至琦 Happy Chris's Day 生日拍貼應援", date:'2026.11',
+   photos:['works/chris2026-1.jpg','works/chris2026-2.jpg','works/chris2026-3.jpg'],
+   ig:'https://www.instagram.com/p/DfE8hp-JsBL/'},
+  {type:'frame', layout:'ig3', tag:'拍貼', title:"加藤 Happy Ryushi's Day 生日拍貼應援", date:'2026.08',
+   photos:['works/kato2026-1.jpg','works/kato2026-2.jpg','works/kato2026-3.jpg'],
+   ig:'https://www.instagram.com/p/DbNwhl9pOHo/'},
+  {type:'goods', layout:'ig3', tag:'專場應援', title:'F.F.One Way Ticket – FarFarLand 專場應援', date:'2026.07',
+   photos:['works/ffoland-1.jpg','works/ffoland-2.jpg','works/ffoland-3.jpg'],
+   ig:'https://www.instagram.com/p/DaMrclKpakC/'},
+  {type:'print', tag:'雲端列印', title:'至琦 合格琦願 會考應援御守', date:'2026.05',
+   photos:['works/exam2026-1.jpg','works/exam2026-2.jpg'],
+   ig:'https://www.instagram.com/p/DYWKfErmurn/'},
+  {type:['goods','ticket'], layout:'ig3', tag:'手拿旗・票夾', title:'偶像運動會 F.F.O 應援', date:'2026.04',
+   photos:['works/sport2026-1.jpg','works/sport2026-2.jpg','works/sport2026-3.jpg','works/sport2026-4.jpg','works/sport2026-5.jpg','works/sport2026-6.jpg'],
+   ig:'https://www.instagram.com/p/DXUPzvYFJnw/'},
+  {type:'print', layout:'ig3', tag:'雲端列印', title:'The Uncharted Realm with F.F.O 見面會應援', date:'2026.03',
+   photos:['works/fanmeet2026-1.jpg','works/fanmeet2026-2.jpg','works/fanmeet2026-3.jpg','works/fanmeet2026-4.jpg','works/fanmeet2026-5.jpg'],
+   ig:'https://www.instagram.com/p/DVQZUrpGj61/'},
+  {type:'flag', tag:'街旗', title:'心茗 Happy XXIN Day 生日街旗應援', date:'2025.08',
+   photos:['works/xin2025-1.jpg','works/xin2025-2.jpg','works/xin2025-3.jpg','works/xin2025-4.jpg','works/xin2025-5.jpg'],
+   ig:'https://www.instagram.com/p/DM7tB2szkcT/'},
+  {type:'frame', layout:'ig3', tag:'拍貼', title:'加藤 Happy RK Day 生日拍貼應援', date:'2025.08',
+   photos:['works/kato2025-1.jpg','works/kato2025-2.jpg','works/kato2025-3.jpg','works/kato2025-4.jpg'],
+   ig:'https://www.instagram.com/p/DMvUaUuTOv2/'},
+  {type:'flag', tag:'街旗', title:'崇峻 Happy JUN Day 生日街旗應援', date:'2025.02',
+   photos:['works/junflag2025-1.jpg','works/junflag2025-2.jpg','works/junflag2025-3.jpg','works/junflag2025-4.jpg','works/junflag2025-5.jpg'],
+   ig:'https://www.instagram.com/p/DFnCdENTe-p/'},
+  {type:'frame', layout:'ig3', tag:'拍貼', title:'崇峻 Happy JUN Day 生日拍貼應援', date:'2025.02',
+   photos:['works/jun2025-1.jpg','works/jun2025-2.jpg','works/jun2025-3.jpg','works/jun2025-4.jpg'], ratio:'4/5',
+   ig:'https://www.instagram.com/p/DFVO7XqTeqk/'},
+  {type:['goods','ticket'], tag:'票夾・吊飾・貼紙', title:'崇峻 2024 FUTURE 畢業演唱會應援', date:'2024.12',
+   photos:['works/grad2024-1.jpg','works/grad2024-2.jpg','works/grad2024-3.jpg','works/grad2024-4.jpg'],
+   ig:'https://www.instagram.com/p/DDuPynjvGJI/'}
+];
+var CATS = [
+  {id:'all',    label:'全部'},
+  {id:'frame',  label:'拍貼'},
+  {id:'goods',  label:'實體應援物'},
+  {id:'ticket', label:'票夾'},
+  {id:'flag',   label:'街旗'},
+  {id:'print',  label:'雲端列印'},
+  {id:'other',  label:'其他'}
+];
+var PRODUCTS = [
+  {img:'shop/item01.jpg', name:'學園祭周邊', price:'NT$50 起'},
+  {img:'shop/item02.jpg', name:'〔親簽〕轉過頭CP寫真', price:'NT$100 起'},
+  {img:'shop/item03.jpg', name:'ARKis 小卡', price:'NT$70 起'},
+  {img:'shop/item04.jpg', name:'F.F.O 小卡 ＆ 周邊', price:'NT$80'},
+  {img:'shop/item05.jpg', name:'周邊商品', price:'NT$350'},
+  {img:'shop/item06.jpg', name:'偶像運動會小卡', price:'NT$50'},
+  {img:'shop/item07.jpg', name:'ARKis 專輯《ARK》', price:'NT$30'},
+  {img:'shop/item08.jpg', name:'幻藍小熊 小卡', price:'NT$80 起'},
+  {img:'shop/item09.jpg', name:'728 爆米花小卡', price:'NT$200'}
+];
+var SHOP_URL = 'https://myship.7-11.com.tw/general/detail/GM2602113969462';
+/* ============================== */
+
+(function(){
+  var COLORS=['#A9C2FF','#FFD6EC','#E6F66B','#C9B8FF','#BFEFFF','#FFC7DD'];
+  function ph(label,i){ // 佔位圖
+    var c=COLORS[i%COLORS.length];
+    var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect width="300" height="300" fill="'+c+'"/>'+
+      '<g fill="#2E2F8F" opacity=".18"><rect x="120" y="96" width="60" height="12"/><rect x="108" y="108" width="84" height="12"/><rect x="108" y="120" width="84" height="40"/></g>'+
+      '<text x="150" y="210" text-anchor="middle" font-family="monospace" font-weight="700" font-size="26" fill="#2E2F8F">'+label+'</text></svg>';
+    return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+  }
+  function pad(n){return (n<10?'0':'')+n}
+
+  // works: tabs + auto-rotating carousel
+  var grid=document.getElementById('worksGrid'),tabs=document.getElementById('worksTabs'),dots=document.getElementById('carDots');
+  function types(w){return [].concat(w.type)}
+  WORKS.forEach(function(w,wi){w.photos=w.photos.map(function(src,k){return src||ph('WORK '+pad(wi+1),wi+k)})});
+  function card(w,wi){
+    var b=document.createElement('button');b.type='button';b.className='proj';
+    b.setAttribute('aria-label','看作品：'+w.title);
+    var cv=document.createElement('span');cv.className='cover';
+    w.photos.slice(0,3).forEach(function(src){var im=document.createElement('img');im.src=src;im.alt='';im.loading='lazy';im.draggable=false;cv.appendChild(im)});
+    var meta=document.createElement('span');meta.className='meta';
+    var t=document.createElement('span');t.className='pt';t.textContent=w.title;meta.appendChild(t);
+    if(w.date){var d=document.createElement('span');d.className='pd';d.textContent=w.date;meta.appendChild(d)}
+    b.appendChild(cv);
+    if(w.photos.length>1){var c=document.createElement('span');c.className='pcount';c.textContent='▣ '+w.photos.length;b.appendChild(c)}
+    b.appendChild(meta);b.addEventListener('click',function(){open(wi,0)});return b;
+  }
+  var idx=0,count=0,holdUntil=0,visible=true,
+      reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function go(i,user){if(!count)return;idx=(i+count)%count;grid.style.transform='translateX('+(-100*idx)+'%)';mark();if(user)holdUntil=Date.now()+8000}
+  function mark(){[].forEach.call(dots.children,function(d,k){d.setAttribute('aria-current',k===idx?'true':'false')})}
+  var curList=[];
+  function render(cat){grid.innerHTML='';dots.innerHTML='';idx=0;
+    var list=curList=WORKS.map(function(w,wi){return wi}).filter(function(wi){return cat==='all'||types(WORKS[wi]).indexOf(cat)>-1});
+    list.forEach(function(wi,k){var sl=document.createElement('div');sl.className='slide';sl.appendChild(card(WORKS[wi],wi));grid.appendChild(sl);
+      var d=document.createElement('button');d.type='button';d.setAttribute('aria-label','第 '+(k+1)+' 個作品');d.addEventListener('click',function(){go(k,true)});dots.appendChild(d)});
+    count=list.length;grid.style.transform='translateX(0)';mark();
+    document.querySelector('.car-nav').hidden=count<2;
+    [].forEach.call(tabs.children,function(t){t.setAttribute('aria-pressed',t.dataset.cat===cat?'true':'false')})}
+  document.getElementById('carPrev').onclick=function(){go(idx-1,true)};
+  document.getElementById('carNext').onclick=function(){go(idx+1,true)};
+  // drag (mouse + touch) and horizontal wheel/trackpad
+  var dx0=null,dy0=0,ddx=0,dragging=false,moved=false;
+  grid.addEventListener('pointerdown',function(e){if(e.button>0)return;dx0=e.clientX;dy0=e.clientY;ddx=0;dragging=false;moved=false;holdUntil=Date.now()+8000});
+  window.addEventListener('pointermove',function(e){if(dx0===null)return;ddx=e.clientX-dx0;var ddy=e.clientY-dy0;
+    if(!dragging&&Math.abs(ddx)>8&&Math.abs(ddx)>Math.abs(ddy)){dragging=true;grid.style.transition='none'}
+    if(dragging)grid.style.transform='translateX(calc('+(-100*idx)+'% + '+ddx+'px))'});
+  function endDrag(){if(dx0===null)return;dx0=null;grid.style.transition='';
+    if(dragging){moved=true;dragging=false;if(Math.abs(ddx)>50)go(idx+(ddx<0?1:-1),true);else go(idx,true)}}
+  window.addEventListener('pointerup',endDrag);window.addEventListener('pointercancel',endDrag);
+  grid.addEventListener('click',function(e){if(moved){e.stopPropagation();e.preventDefault();moved=false}},true);
+  var wAcc=0,wLock=0;
+  document.getElementById('worksCar').addEventListener('wheel',function(e){if(Math.abs(e.deltaX)<=Math.abs(e.deltaY))return;e.preventDefault();
+    if(Date.now()<wLock)return;wAcc+=e.deltaX;if(Math.abs(wAcc)>40){go(idx+(wAcc>0?1:-1),true);wAcc=0;wLock=Date.now()+600}},{passive:false});
+  grid.addEventListener('mouseenter',function(){holdUntil=Date.now()+1e9});grid.addEventListener('mouseleave',function(){holdUntil=Date.now()+1500});
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(grid);
+  if(!reduce)setInterval(function(){if(!visible||document.hidden||Date.now()<holdUntil||document.getElementById('viewer').classList.contains('open'))return;go(idx+1)},4000);
+  CATS.forEach(function(c){if(c.id!=='all'&&!WORKS.some(function(w){return types(w).indexOf(c.id)>-1}))return;
+    var t=document.createElement('button');t.type='button';t.className='tab';t.dataset.cat=c.id;t.textContent=c.label;
+    t.addEventListener('click',function(){render(c.id)});tabs.appendChild(t)});
+  if(tabs.children.length<3)tabs.hidden=true;
+  render('all');
+
+  // products
+  var pg=document.getElementById('prodGrid');
+  PRODUCTS.forEach(function(p,i){
+    var a=document.createElement('a');a.className='prod';a.href=p.url||SHOP_URL||'#';a.target='_blank';a.rel='noopener';
+    var im=document.createElement('img');im.src=p.img||ph('ITEM '+pad(i+1),i+1);im.alt=p.name;im.loading='lazy';
+    var n=document.createElement('span');n.className='pn';n.textContent=p.name;
+    var pr=document.createElement('span');pr.className='pp';pr.textContent=p.price;
+    a.appendChild(im);a.appendChild(n);a.appendChild(pr);pg.appendChild(a);
+  });
+  if(SHOP_URL) document.getElementById('shopAll').href=SHOP_URL;
+
+  // viewer: photos within a project; past the ends it moves to the neighbouring project
+  var v=document.getElementById('viewer'),vImg=document.getElementById('vImg'),vCap=document.getElementById('vCap'),vCount=document.getElementById('vCount'),vIg=document.getElementById('vIg'),
+      curW=0,cur=0,lastFocus=null;
+  function wpos(){var k=curList.indexOf(curW);return k<0?0:k}
+  function project(step,last){if(curList.length<2)return false;var k=(wpos()+step+curList.length)%curList.length;curW=curList[k];
+    var n=WORKS[curW].photos.length;cur=last?n-1:0;go(k);render1();return true}
+  function show(i){var n=WORKS[curW].photos.length;
+    if(i>=n&&project(1,false))return;if(i<0&&project(-1,true))return;cur=(i+n)%n;render1()}
+  function render1(){var w=WORKS[curW],n=w.photos.length;vImg.src=w.photos[cur];vImg.alt=w.title+' '+(cur+1);vCap.textContent=w.title;
+    vCount.textContent=pad(cur+1)+'/'+pad(n);document.getElementById('vPrev').hidden=document.getElementById('vNext').hidden=(n<2&&curList.length<2);
+    document.getElementById('vWPos').textContent='作品 '+pad(wpos()+1)+'/'+pad(curList.length);
+    if(w.ig){vIg.href=w.ig;vIg.hidden=false}else{vIg.hidden=true}}
+  function open(wi,i){lastFocus=document.activeElement;curW=wi;cur=i;render1();v.classList.add('open');document.body.classList.add('lock');document.getElementById('vClose').focus()}
+  function close(){v.classList.remove('open');document.body.classList.remove('lock');if(lastFocus)lastFocus.focus()}
+  document.getElementById('vPrev').onclick=function(){show(cur-1)};
+  document.getElementById('vNext').onclick=function(){show(cur+1)};
+  document.getElementById('vPrevW').onclick=function(){project(-1,false)};
+  document.getElementById('vNextW').onclick=function(){project(1,false)};
+  document.getElementById('vClose').onclick=close;
+  v.addEventListener('click',function(e){if(e.target===v)close()});
+  document.addEventListener('keydown',function(e){if(!v.classList.contains('open'))return;
+    if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(cur-1);else if(e.key==='ArrowRight')show(cur+1);else if(e.key==='ArrowUp'){e.preventDefault();project(-1,false)}else if(e.key==='ArrowDown'){e.preventDefault();project(1,false)}});
+  var sx=null,sy=0,st=document.getElementById('vStage');
+  st.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+  st.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+    if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))show(cur+(dx<0?1:-1));sx=null});
+})();
+
+(function(){
+  var btn=document.getElementById('copyBtn');
+  btn.addEventListener('click',function(){
+    var code=btn.getAttribute('data-code');
+    function ok(){btn.textContent='已複製 ✓';btn.classList.add('done');
+      setTimeout(function(){btn.textContent='複製';btn.classList.remove('done')},1800)}
+    function fallback(){var t=document.createElement('textarea');t.value=code;t.setAttribute('readonly','');
+      t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();
+      try{document.execCommand('copy');ok()}catch(e){}document.body.removeChild(t)}
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(code).then(ok,fallback)}else{fallback()}
+  });
+})();
+</script>
+</body>
+</html>
