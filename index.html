@@ -95,8 +95,8 @@ svg{display:block}
 .soc .btn{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;border:2.5px solid var(--ink);background:var(--win);color:var(--ink);
   box-shadow:inset -4px -4px 0 rgba(46,47,143,.14),inset 4px 4px 0 rgba(255,255,255,.85),3px 3px 0 var(--ink);transition:transform .1s,box-shadow .1s}
 .soc .btn svg{width:26px;height:26px}
-.soc:nth-child(1) .btn{background:var(--pink-3)}
-.soc:nth-child(2) .btn{background:var(--win)}
+.soc:nth-child(1) .btn{background:#FFD6EC;color:#2E2F8F}
+.soc:nth-child(2) .btn{background:#FFFFFF;color:#2E2F8F}
 .soc:nth-child(3) .btn{background:var(--lime);color:#2E2F8F}
 .soc:nth-child(4) .btn{background:#CFC4FF;color:#2E2F8F}
 .soc:hover .btn{transform:translateY(-2px)}
@@ -119,12 +119,12 @@ svg{display:block}
 /* about */
 .bio{margin:0;text-align:center}
 .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:12px}
-.chip{font-size:13px;font-weight:700;padding:2px 10px;border:2px solid var(--ink);border-radius:999px;background:var(--win-2);color:var(--text)}
+.chip{font-size:13px;font-weight:700;padding:2px 10px;border:2px solid var(--ink);border-radius:999px;background:#EEF0FF;color:#24255C}
 a.chip{text-decoration:none;display:inline-block;transition:transform .15s ease,box-shadow .15s ease}
 a.chip:hover,a.chip:focus-visible{transform:translateY(-3px) rotate(-2deg);box-shadow:2px 3px 0 var(--ink)}
 a.chip:active{transform:translate(1px,1px);box-shadow:none}
 .chip:nth-child(3n+1){background:var(--lime);color:#24255C}
-.chip:nth-child(3n+2){background:var(--pink-3)}
+.chip:nth-child(3n+2){background:#FFD6EC}
 
 /* link rows */
 .links{display:flex;flex-direction:column;gap:12px}
@@ -270,10 +270,10 @@ footer{text-align:center;font-family:var(--term);font-size:18px;color:var(--mute
     <h1 class="hello">HI, I'M HC!</h1>
     <div class="handle">@_im_hc</div>
     <nav class="socials" aria-label="社群連結">
-      <a class="soc" href="https://www.instagram.com/_im_hc/" target="_blank" rel="noopener"><span class="btn"><svg><use href="#i-ig"/></svg></span>IG</a>
-      <a class="soc" href="https://www.threads.net/@_im_hc" target="_blank" rel="noopener"><span class="btn"><svg><use href="#i-threads"/></svg></span>THREADS</a>
-      <a class="soc" href="https://www.tiktok.com/@_im_hc" target="_blank" rel="noopener"><span class="btn"><svg><use href="#i-tiktok"/></svg></span>TIKTOK</a>
-      <a class="soc" href="https://myship.7-11.com.tw/general/detail/GM2602113969462" target="_blank" rel="noopener"><span class="btn"><svg><use href="#i-cart"/></svg></span>SHOP</a>
+      <a class="soc" data-goatcounter-click="click-ig" data-goatcounter-title="IG" href="https://www.instagram.com/_im_hc/" target="_blank" rel="noopener"><span class="btn"><svg><use href="#i-ig"/></svg></span>IG</a>
+      <a class="soc" data-goatcounter-click="click-threads" data-goatcounter-title="Threads" href="https://www.threads.net/@_im_hc" target="_blank" rel="noopener"><span class="btn"><svg><use href="#i-threads"/></svg></span>THREADS</a>
+      <a class="soc" data-goatcounter-click="click-tiktok" data-goatcounter-title="TikTok" href="https://www.tiktok.com/@_im_hc" target="_blank" rel="noopener"><span class="btn"><svg><use href="#i-tiktok"/></svg></span>TIKTOK</a>
+      <a class="soc" data-goatcounter-click="click-shop" data-goatcounter-title="賣貨便（上方 SHOP 圓鈕）" href="https://myship.7-11.com.tw/general/detail/GM2602113969462" target="_blank" rel="noopener"><span class="btn"><svg><use href="#i-cart"/></svg></span>SHOP</a>
     </nav>
   </header>
 
@@ -320,7 +320,7 @@ footer{text-align:center;font-family:var(--term);font-size:18px;color:var(--mute
     <div class="body">
       <h2 id="tools-h">TOOLS <span class="zh">我做的小工具</span></h2>
       <div class="links">
-        <a class="link" href="https://imhc-studio.github.io/chat-clipboard/" target="_blank" rel="noopener">
+        <a class="link" data-goatcounter-click="click-clipboard" data-goatcounter-title="Dolfan 聊天室剪貼簿" href="https://imhc-studio.github.io/chat-clipboard/" target="_blank" rel="noopener">
           <span class="ico blue">💬</span>
           <span class="txt"><span class="t">Dolfan 聊天室剪貼簿<span class="tag">FREE</span></span>
             <span class="s">上傳兜粉聊天截圖，自動挑出你和偶像的訊息，拼成限動圖或長圖</span></span>
@@ -345,7 +345,7 @@ footer{text-align:center;font-family:var(--term);font-size:18px;color:var(--mute
       <!-- 商品清單在最下面 script 的 PRODUCTS -->
       <div class="products" id="prodGrid"></div>
       <p class="hint">← SWIPE FOR MORE →</p>
-      <a class="shop-all" id="shopAll" href="https://myship.7-11.com.tw/general/detail/GM2602113969462" target="_blank" rel="noopener">🛒 逛賣貨便 ▶</a>
+      <a class="shop-all" id="shopAll" data-goatcounter-click="click-shop" data-goatcounter-title="賣貨便（逛賣貨便按鈕）" href="https://myship.7-11.com.tw/general/detail/GM2602113969462" target="_blank" rel="noopener">🛒 逛賣貨便 ▶</a>
     </div>
   </section>
 
@@ -361,7 +361,7 @@ footer{text-align:center;font-family:var(--term);font-size:18px;color:var(--mute
         <div class="code">D2LC85VZ</div>
         <button class="copy" type="button" data-code="D2LC85VZ" id="copyBtn">複製</button>
       </div>
-      <a class="shop-all" href="https://dolfan.club/idol/f.f.o.official?recommend-code=D2LC85VZ" target="_blank" rel="noopener">💌 加入 F.F.O 兜圈 ▶</a>
+      <a class="shop-all" data-goatcounter-click="click-dolfan" data-goatcounter-title="加入 F.F.O 兜圈" href="https://dolfan.club/idol/f.f.o.official?recommend-code=D2LC85VZ" target="_blank" rel="noopener">💌 加入 F.F.O 兜圈 ▶</a>
       <ol class="steps">
         <li data-n="01">點上面按鈕，或下載兜粉 App 搜尋 F.F.O</li>
         <li data-n="02">首次訂閱時貼上推薦碼 D2LC85VZ</li>
@@ -456,6 +456,9 @@ var PRODUCTS = [
 var SHOP_URL = 'https://myship.7-11.com.tw/general/detail/GM2602113969462';
 /* ============================== */
 
+/* GoatCounter 事件（本機預覽不會記錄） */
+function track(path,title){try{if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:path,title:title||path,event:true})}catch(e){}}
+
 (function(){
   var COLORS=['#A9C2FF','#FFD6EC','#E6F66B','#C9B8FF','#BFEFFF','#FFC7DD'];
   function ph(label,i){ // 佔位圖
@@ -522,7 +525,7 @@ var SHOP_URL = 'https://myship.7-11.com.tw/general/detail/GM2602113969462';
   // products
   var pg=document.getElementById('prodGrid');
   PRODUCTS.forEach(function(p,i){
-    var a=document.createElement('a');a.className='prod';a.href=p.url||SHOP_URL||'#';a.target='_blank';a.rel='noopener';
+    var a=document.createElement('a');a.className='prod';a.addEventListener('click',function(){track('click-shop','賣貨便（商品：'+p.name+'）')});a.href=p.url||SHOP_URL||'#';a.target='_blank';a.rel='noopener';
     var im=document.createElement('img');im.src=p.img||ph('ITEM '+pad(i+1),i+1);im.alt=p.name;im.loading='lazy';
     var n=document.createElement('span');n.className='pn';n.textContent=p.name;
     var pr=document.createElement('span');pr.className='pp';pr.textContent=p.price;
@@ -535,14 +538,15 @@ var SHOP_URL = 'https://myship.7-11.com.tw/general/detail/GM2602113969462';
       curW=0,cur=0,lastFocus=null;
   function wpos(){var k=curList.indexOf(curW);return k<0?0:k}
   function project(step,last){if(curList.length<2)return false;var k=(wpos()+step+curList.length)%curList.length;curW=curList[k];
-    var n=WORKS[curW].photos.length;cur=last?n-1:0;go(k);render1();return true}
+    var n=WORKS[curW].photos.length;cur=last?n-1:0;go(k);render1();track(wslug(WORKS[curW]),WORKS[curW].title);return true}
   function show(i){var n=WORKS[curW].photos.length;
     if(i>=n&&project(1,false))return;if(i<0&&project(-1,true))return;cur=(i+n)%n;render1()}
   function render1(){var w=WORKS[curW],n=w.photos.length;vImg.src=w.photos[cur];vImg.alt=w.title+' '+(cur+1);vCap.textContent=w.title;
     vCount.textContent=pad(cur+1)+'/'+pad(n);document.getElementById('vPrev').hidden=document.getElementById('vNext').hidden=(n<2&&curList.length<2);
     document.getElementById('vWPos').textContent='作品 '+pad(wpos()+1)+'/'+pad(curList.length);
     if(w.ig){vIg.href=w.ig;vIg.hidden=false}else{vIg.hidden=true}}
-  function open(wi,i){lastFocus=document.activeElement;curW=wi;cur=i;render1();v.classList.add('open');document.body.classList.add('lock');document.getElementById('vClose').focus()}
+  function wslug(w){return 'work-'+(w.photos[0].split('/').pop().replace(/-\d+\.\w+$/,''))}
+  function open(wi,i){lastFocus=document.activeElement;curW=wi;cur=i;render1();track(wslug(WORKS[wi]),WORKS[wi].title);v.classList.add('open');document.body.classList.add('lock');document.getElementById('vClose').focus()}
   function close(){v.classList.remove('open');document.body.classList.remove('lock');if(lastFocus)lastFocus.focus()}
   document.getElementById('vPrev').onclick=function(){show(cur-1)};
   document.getElementById('vNext').onclick=function(){show(cur+1)};
@@ -562,6 +566,7 @@ var SHOP_URL = 'https://myship.7-11.com.tw/general/detail/GM2602113969462';
   var btn=document.getElementById('copyBtn');
   btn.addEventListener('click',function(){
     var code=btn.getAttribute('data-code');
+    track('copy-code','複製推薦碼 '+code);
     function ok(){btn.textContent='已複製 ✓';btn.classList.add('done');
       setTimeout(function(){btn.textContent='複製';btn.classList.remove('done')},1800)}
     function fallback(){var t=document.createElement('textarea');t.value=code;t.setAttribute('readonly','');
